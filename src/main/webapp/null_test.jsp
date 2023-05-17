@@ -46,7 +46,7 @@ select 이름, coalesce(일분기, 이분기, 삼분기, 사분기) from 실적;
 	while(nvl2Rs.next()){
 		HashMap<String, Object> n2 = new HashMap<String, Object>();
 		n2.put("이름", nvl2Rs.getString("이름"));
-		n2.put("이분기", nvl2Rs.getInt("이분기"));
+		n2.put("이분기", nvl2Rs.getString("이분기"));
 		nvl2List.add(n2);
 	}
 	System.out.println(nvl2List);
@@ -94,7 +94,7 @@ select 이름, coalesce(일분기, 이분기, 삼분기, 사분기) from 실적;
 </head>
 <body>
 	<div>
-		<h1>null_test</h1>
+		<h1>null_test nvl</h1>
 		<table border="1">
 			<tr>
 				<td>이름</td>
@@ -112,6 +112,67 @@ select 이름, coalesce(일분기, 이분기, 삼분기, 사분기) from 실적;
 		%>
 		</table>
 	</div>
+	
+		<div>
+		<h1>null_test nvl2</h1>
+		<table border="1">
+			<tr>
+				<td>이름</td>
+				<td>이분기</td>
+			</tr>
+		<%
+			for(HashMap<String, Object> n2 : nvl2List){
+		%>
+				<tr>
+					<td><%=n2.get("이름") %></td>
+					<td><%=n2.get("이분기") %></td>
+				</tr>
+		<%
+			}
+		%>
+		</table>
+	</div>
+	
+	<div>
+		<h1>null_test nullif</h1>
+		<table border="1">
+			<tr>
+				<td>이름</td>
+				<td>사분기</td>
+			</tr>
+		<%
+			for(HashMap<String, Object> ni : nullifList){
+		%>
+				<tr>
+					<td><%=ni.get("이름") %></td>
+					<td><%=ni.get("사분기") %></td>
+				</tr>
+		<%
+			}
+		%>
+		</table>
+	</div>
+	
+	<div>
+		<h1>null_test coalesce</h1>
+		<table border="1">
+			<tr>
+				<td>이름</td>
+				<td>coal</td>
+			</tr>
+		<%
+			for(HashMap<String, Object> c : coalList){
+		%>
+				<tr>
+					<td><%=c.get("이름") %></td>
+					<td><%=c.get("coal") %></td>
+				</tr>
+		<%
+			}
+		%>
+		</table>
+	</div>
+
 
 </body>
 </html>
